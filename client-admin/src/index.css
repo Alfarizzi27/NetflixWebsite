@@ -1,0 +1,157 @@
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+.container-vid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  z-index: -1;
+}
+
+.vid-netflix {
+  width: 100vw;
+  height: 100vh;
+}
+
+#login-row {
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.598);
+}
+
+#login-col {
+  display: flex;
+  box-shadow: 2px 2px 20px 5px #00000096;
+  height: 80vh;
+  border-radius: 10px;
+  padding: 0px;
+  position: fixed;
+}
+
+#login-img {
+  background-color: rgba(103, 103, 103, 0.152);
+  backdrop-filter: blur(70px);
+  border-radius: 0px 10px 10px 0px;
+}
+
+#img-login {
+  display: flex;
+  justify-content: center;
+}
+
+#login-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(186, 186, 186);
+}
+
+#form-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#login-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+}
+
+#login-content .form-outline {
+  width: 400px;
+}
+
+#login-detail {
+  border-radius: 10px 0px 0px 10px;
+  text-align: center;
+  color: white;
+  background: url(./assets/img/bg.jpeg);
+  background-size: cover;
+  background-position: center;
+  padding: 0px;
+}
+
+.model-login {
+  border-radius: 10px 0px 0px 10px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.726);
+}
+
+#login-detail h1 {
+  font-family: "Montserrat";
+  font-size: 18px;
+  font-weight: 700;
+  color: rgb(255, 255, 255);
+}
+
+.form-login {
+  background-color: rgb(41, 41, 41);
+  color: white;
+  border: #00000096;
+  height: 50px;
+  padding: 20px;
+}
+
+.form-login:focus {
+  background-color: black;
+  color: #db0e0e;
+}
+
+.btn-login {
+  background-color: #c21212;
+  border: #b71818;
+}
+
+.btn-login:hover {
+  background-color: #550909;
+}
+
+.side-bar {
+  margin-top: 10px;
+  background: linear-gradient(195deg, #42424a 0%, #191919 100%);
+  display: block;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 260px;
+  overflow-y: auto;
+  padding-top: 20px;
+  padding-left: 20px;
+  box-shadow: none;
+}
+
+.nav-item-icon {
+  display: flex;
+  width: 237px;
+  border-radius: 5px;
+  padding-left: 24px;
+  margin-top: 15px;
+}
+
+.nav-item-icon:hover {
+  display: flex;
+  width: 210px;
+  background-color: #a7a7a756;
+  border-radius: 5px;
+  padding-left: 24px;
+}
