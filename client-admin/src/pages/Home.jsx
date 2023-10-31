@@ -1,13 +1,24 @@
 import { useEffect, useState } from "react";
 import Table from "../components/Table";
 import useFetch from "../hooks/useFetch";
+import ModalAdd from "../components/ModalAdd";
 
 function Home() {
   const { datas: movies, errors } = useFetch("movies");
   return (
     <>
-      <h4>Movies List</h4>
-      <button className="btn btn-primary">Add Product</button>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginTop: "30px",
+          marginBottom: "10px",
+        }}
+      >
+        <h4>Movies List</h4>
+        <ModalAdd />
+      </div>
+
       <table className="table">
         <thead>
           <tr>

@@ -1,73 +1,23 @@
 import { useState } from "react";
-import Modal from "react-bootstrap/Modal";
-import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
 
-export default function Table({ data, columns, index }) {
-  const [edit, setEdit] = useState([]);
+export default function ModalAdd() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  async function editDatas(id) {
-    try {
-      let response = await fetch("http://localhost:3000/movies/" + id);
-
-      if (!response.ok) {
-        throw { name: "gagal fetch" };
-      }
-
-      response = await response.json();
-      setEdit(response);
-      handleShow();
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   return (
     <>
-      <tr>
-        <td scope="row">{index + 1}</td>
-        {columns.map((column) =>
-          column === "imgUrl" ? (
-            <td key={column}>
-              <img src={data[column]} style={{ height: "200px" }} />
-            </td>
-          ) : (
-            <td key={column} style={{ whiteSpace: "normal" }}>
-              {data[column]}
-            </td>
-          )
-        )}
-        <td
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            alignContent: "center",
-            height: "217px",
-            gap: "10px",
-          }}
-        >
-          <i
-            onClick={() => {
-              editDatas(data.id);
-            }}
-            className="fa-regular fa-pen-to-square fa-lg"
-            style={{ color: "#000000" }}
-          ></i>
-          <i
-            className="fa-solid fa-trash fa-lg"
-            style={{ color: "#000000" }}
-          ></i>
-        </td>
-      </tr>
+      <Button variant="primary" onClick={handleShow}>
+        Add Product
+      </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Edit Movie</Modal.Title>
+          <Modal.Title>Add New Movie</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -83,7 +33,6 @@ export default function Table({ data, columns, index }) {
                   borderWidth: "0.5px",
                   padding: "8px",
                 }}
-                defaultValue={edit.title}
               />
             </Form.Group>
             <Form.Group className="" controlId="exampleForm.ControlTextarea1">
@@ -98,7 +47,6 @@ export default function Table({ data, columns, index }) {
                   borderWidth: "0.5px",
                   padding: "8px",
                 }}
-                defaultValue={edit.synopsis}
               />
             </Form.Group>
             <Form.Group className="" controlId="exampleForm.ControlInput1">
