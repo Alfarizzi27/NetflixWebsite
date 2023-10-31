@@ -1,9 +1,13 @@
+import { Link } from "react-router-dom";
 import logo2 from "../assets/img/logo2.jpeg";
 
 function Sidebar() {
   return (
     <div className="col">
-      <div className="card text-white mb-3 side-bar">
+      <div
+        className="card text-white mb-3 side-bar"
+        style={{ zIndex: "5", height: "95vh" }}
+      >
         <div
           className="card-headers mt-2"
           style={{
@@ -38,21 +42,25 @@ function Sidebar() {
             >
               <div className="div" style={{ width: "100%" }}>
                 <li className="nav-item nav-item-icon">
-                  <a className="nav-link text-white " href="#">
+                  <Link to="/" className="nav-link text-white " href="#">
                     <div className="text-white text-center me-2 d-flex align-items-center">
                       <i className="material-icons opacity-10">dashboard</i>
                       <span className="nav-link-text ms-3">Dashboard</span>
                     </div>
-                  </a>
+                  </Link>
                 </li>
 
                 <li className="nav-item nav-item-icon">
-                  <a className="nav-link text-white " href="#">
+                  <Link
+                    to="/categories"
+                    className="nav-link text-white "
+                    href="#"
+                  >
                     <div className="text-white text-center me-2 d-flex align-items-center">
                       <i className="material-icons opacity-10">table_view</i>
-                      <span className="nav-link-text ms-3">Categories</span>
+                      <span className="nav-link-text ms-3">Genre</span>
                     </div>
-                  </a>
+                  </Link>
                 </li>
 
                 <li className="nav-item nav-item-icon">
@@ -71,13 +79,14 @@ function Sidebar() {
                   paddingRight: "20px",
                 }}
               >
-                <a
-                  className="btn btn-outline-primary mt-4 w-100"
+                <Link
+                  to="/login"
+                  className="btn btn-outline-primary w-100"
                   href="#"
                   type="button"
                 >
                   Logout
-                </a>
+                </Link>
               </div>
             </div>
           </ul>

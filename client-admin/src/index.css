@@ -37,7 +37,7 @@ body {
 
 #login-col {
   display: flex;
-  box-shadow: 2px 2px 20px 5px #00000096;
+  box-shadow: 2px 2px 20px 5px #820b0b65;
   height: 80vh;
   border-radius: 10px;
   padding: 0px;
@@ -47,7 +47,7 @@ body {
 #login-img {
   background-color: rgba(103, 103, 103, 0.152);
   backdrop-filter: blur(70px);
-  border-radius: 0px 10px 10px 0px;
+  border-radius: 10px 0px 0px 10px;
 }
 
 #img-login {
@@ -81,7 +81,7 @@ body {
 }
 
 #login-detail {
-  border-radius: 10px 0px 0px 10px;
+  border-radius: 0px 10px 10px 0px;
   text-align: center;
   color: white;
   background: url(./assets/img/bg.jpeg);
@@ -91,7 +91,7 @@ body {
 }
 
 .model-login {
-  border-radius: 10px 0px 0px 10px;
+  border-radius: 0px 10px 10px 0px;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.726);
 }

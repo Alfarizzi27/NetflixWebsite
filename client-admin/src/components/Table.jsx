@@ -1,16 +1,21 @@
-export default function Table({ movie, index }) {
+export default function Table({ data, columns, index }) {
   return (
-    <>
+    <tr>
       <td scope="row">{index + 1}</td>
-      <td>{movie.title}</td>
-      <td>{movie.slug}</td>
-      <td>{movie.rating}</td>
-      <td>{movie.rating}</td>
-      <td>{movie.imgUrl}</td>
-      <td>{movie.rating}</td>
+      {columns.map((column) =>
+        column === "imgUrl" ? (
+          <td key={column}>
+            <img src={data[column]} style={{ height: "200px" }} />
+          </td>
+        ) : (
+          <td key={column} style={{ whiteSpace: "normal" }}>
+            {data[column]}
+          </td>
+        )
+      )}
       <td>
         <a href="">Edit</a> | <a href="">Delete</a>
       </td>
-    </>
+    </tr>
   );
 }
