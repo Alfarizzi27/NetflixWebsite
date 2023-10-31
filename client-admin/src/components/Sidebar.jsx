@@ -36,9 +36,9 @@ function Sidebar() {
                 height: "630px",
               }}
             >
-              <div className="div">
+              <div className="div" style={{ width: "100%" }}>
                 <li className="nav-item nav-item-icon">
-                  <a className="nav-link text-white " href="./dashboard.html">
+                  <a className="nav-link text-white " href="#">
                     <div className="text-white text-center me-2 d-flex align-items-center">
                       <i className="material-icons opacity-10">dashboard</i>
                       <span className="nav-link-text ms-3">Dashboard</span>
@@ -47,7 +47,7 @@ function Sidebar() {
                 </li>
 
                 <li className="nav-item nav-item-icon">
-                  <a className="nav-link text-white " href="./tables.html">
+                  <a className="nav-link text-white " href="#">
                     <div className="text-white text-center me-2 d-flex align-items-center">
                       <i className="material-icons opacity-10">table_view</i>
                       <span className="nav-link-text ms-3">Categories</span>
@@ -56,7 +56,7 @@ function Sidebar() {
                 </li>
 
                 <li className="nav-item nav-item-icon">
-                  <a className="nav-link text-white " href="./billing.html">
+                  <a className="nav-link text-white " href="#">
                     <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
                       <i className="material-icons opacity-10">receipt_long</i>
                       <span className="nav-link-text ms-3">Register Admin</span>
@@ -64,12 +64,17 @@ function Sidebar() {
                   </a>
                 </li>
               </div>
-              <div style={{ width: "220px" }}>
+              <div
+                style={{
+                  width: "100%",
+                  paddingLeft: "20px",
+                  paddingRight: "20px",
+                }}
+              >
                 <a
                   className="btn btn-outline-primary mt-4 w-100"
                   href="#"
                   type="button"
-                  style={{ width: "400px" }}
                 >
                   Logout
                 </a>
