@@ -136,22 +136,17 @@ body {
   max-width: 260px;
   overflow-y: auto;
   padding-top: 20px;
-  padding-left: 20px;
   box-shadow: none;
 }
 
 .nav-item-icon {
   display: flex;
-  width: 237px;
+  width: 100%;
   border-radius: 5px;
   padding-left: 24px;
   margin-top: 15px;
 }
 
 .nav-item-icon:hover {
-  display: flex;
-  width: 210px;
   background-color: #a7a7a756;
-  border-radius: 5px;
-  padding-left: 24px;
 }
