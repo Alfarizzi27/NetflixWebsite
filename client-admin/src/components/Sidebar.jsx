@@ -1,7 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo2 from "../assets/img/logo2.jpeg";
 
 function Sidebar() {
+  const logout = () => {
+    console.log("logout");
+    localStorage.clear();
+    const navigate = useNavigate();
+    navigate("/login");
+  };
+
   return (
     <div className="col">
       <div
@@ -79,14 +86,14 @@ function Sidebar() {
                   paddingRight: "20px",
                 }}
               >
-                <Link
-                  to="/login"
+                <a
+                  onClick={logout}
                   className="btn btn-outline-primary w-100"
                   href="#"
                   type="button"
                 >
                   Logout
-                </Link>
+                </a>
               </div>
             </div>
           </ul>

@@ -48,19 +48,20 @@ function Login() {
                       className="text-center pt-1 pb-1 mt-4"
                       style={{ display: "block", height: "fitContent" }}
                     >
-                      <Link
-                        to="/"
-                        className="btn btn-block fa-lg btn-login gradient-custom-2"
-                        type="submit"
-                        style={{
-                          borderColor: "white",
-                          width: "100px",
-                          height: "40px",
-                          color: "white",
-                          fontSize: "14px",
-                        }}
-                      >
-                        Login
+                      <Link to="/">
+                        <button
+                          className="btn fa-lg btn-login gradient-custom-2 "
+                          type="button"
+                          style={{
+                            borderColor: "white",
+                            width: "100px",
+                            height: "40px",
+                            color: "white",
+                            fontSize: "14px",
+                          }}
+                        >
+                          Login
+                        </button>
                       </Link>
                       <p
                         style={{
