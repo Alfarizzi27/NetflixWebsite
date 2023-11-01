@@ -7,6 +7,22 @@ import "./index.css";
 
 import { createBrowserRouter, redirect } from "react-router-dom";
 
+function authenticated() {
+  if (!localStorage.access_token) {
+    return redirect("/login");
+  } else {
+    return null;
+  }
+}
+
+function isLogin() {
+  if (localStorage.access_token) {
+    return redirect("/");
+  } else {
+    return null;
+  }
+}
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,10 +41,12 @@ const router = createBrowserRouter([
         element: <AddFilm />,
       },
     ],
+    loader: authenticated,
   },
   {
     path: "/login",
     element: <Login />,
+    loader: isLogin,
   },
 ]);
 

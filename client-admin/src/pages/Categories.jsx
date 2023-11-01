@@ -1,8 +1,19 @@
 import { useEffect, useState } from "react";
-import useFetch from "../hooks/useFetch";
+import { useSelector, useDispatch } from "react-redux";
+// import useFetch from "../hooks/useFetch";
 import Table from "../components/Table";
+import { fetchGenresStart } from "../assets/store/actions";
+
 export default function Categories() {
-  const { datas: genres, errors } = useFetch("genres");
+  // const { datas: genres, errors } = useFetch("genres");
+
+  const genres = useSelector((state) => state.genres.data);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchGenresStart("genres"));
+  }, []);
+
   return (
     <>
       <h4>Genres</h4>
@@ -12,6 +23,8 @@ export default function Categories() {
           <tr>
             <th scope="col">No</th>
             <th scope="col">Name</th>
+            <th scope="col">CreatedAt</th>
+            <th scope="col">UpdatedAt</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
@@ -21,7 +34,8 @@ export default function Categories() {
               data={genre}
               index={index}
               key={genre.id}
-              columns={["name"]}
+              columns={["name", "createdAt", "updatedAt"]}
+              actions={[null, "delete"]}
             />
           ))}
         </tbody>

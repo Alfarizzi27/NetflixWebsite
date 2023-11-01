@@ -1,10 +1,24 @@
 import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Table from "../components/Table";
-import useFetch from "../hooks/useFetch";
+// import useFetch from "../hooks/useFetch";
 import ModalAdd from "../components/ModalAdd";
+import Button from "react-bootstrap/Button";
+import { fetchMoviesStart } from "../assets/store/actions";
 
 function Home() {
-  const { datas: movies, errors } = useFetch("movies");
+  // const { datas: movies, errors } = useFetch("movies");
+  const movies = useSelector((state) => state.movies.data);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchMoviesStart("movies"));
+  }, []);
+
+  // const showModal = () => {
+  //   <ModalAdd />;
+  // };
+
   return (
     <>
       <div
@@ -17,6 +31,9 @@ function Home() {
       >
         <h4>Movies List</h4>
         <ModalAdd />
+        {/* <Button variant="primary" onClick={showModal}>
+          Add Product
+        </Button> */}
       </div>
 
       <table className="table">
@@ -40,6 +57,7 @@ function Home() {
               key={movie.id}
               data={movie}
               columns={["title", "slug", "rating", "authorId", "imgUrl"]}
+              actions={["edit", "delete"]}
               index={index}
             />
 

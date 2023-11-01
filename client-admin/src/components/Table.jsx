@@ -3,7 +3,9 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-export default function Table({ data, columns, index }) {
+export default function Table({ data, columns, index, actions }) {
+  const [editAction, deleteAction] = actions;
+
   const [edit, setEdit] = useState([]);
   const [show, setShow] = useState(false);
 
@@ -51,17 +53,22 @@ export default function Table({ data, columns, index }) {
             gap: "10px",
           }}
         >
-          <i
-            onClick={() => {
-              editDatas(data.id);
-            }}
-            className="fa-regular fa-pen-to-square fa-lg"
-            style={{ color: "#000000" }}
-          ></i>
-          <i
-            className="fa-solid fa-trash fa-lg"
-            style={{ color: "#000000" }}
-          ></i>
+          {editAction && (
+            <i
+              onClick={() => {
+                editDatas(data.id);
+              }}
+              className="fa-regular fa-pen-to-square fa-lg"
+              style={{ color: "#000000" }}
+            ></i>
+          )}
+
+          {deleteAction && (
+            <i
+              className="fa-solid fa-trash fa-lg"
+              style={{ color: "#000000" }}
+            ></i>
+          )}
         </td>
       </tr>
 
@@ -107,6 +114,21 @@ export default function Table({ data, columns, index }) {
               </Form.Label>
               <Form.Control
                 type="text"
+                placeholder=""
+                style={{
+                  border: "solid",
+                  borderWidth: "0.5px",
+                  padding: "8px",
+                }}
+                defaultValue={edit.imgUrl}
+              />
+            </Form.Group>
+            <Form.Group className="" controlId="exampleForm.ControlInput1">
+              <Form.Label style={{ marginBottom: "5px", marginTop: "5px" }}>
+                Rating
+              </Form.Label>
+              <Form.Control
+                type="number"
                 placeholder=""
                 style={{
                   border: "solid",

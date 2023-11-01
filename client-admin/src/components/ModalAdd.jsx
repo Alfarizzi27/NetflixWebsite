@@ -63,6 +63,20 @@ export default function ModalAdd() {
                 }}
               />
             </Form.Group>
+            <Form.Group className="" controlId="exampleForm.ControlInput1">
+              <Form.Label style={{ marginBottom: "5px", marginTop: "5px" }}>
+                Rating
+              </Form.Label>
+              <Form.Control
+                type="number"
+                placeholder=""
+                style={{
+                  border: "solid",
+                  borderWidth: "0.5px",
+                  padding: "8px",
+                }}
+              />
+            </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
