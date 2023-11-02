@@ -3,10 +3,7 @@ import logo2 from "../assets/img/logo2.jpeg";
 
 function Sidebar() {
   const logout = () => {
-    console.log("logout");
     localStorage.clear();
-    const navigate = useNavigate();
-    navigate("/login");
   };
 
   return (
@@ -71,12 +68,16 @@ function Sidebar() {
                 </li>
 
                 <li className="nav-item nav-item-icon">
-                  <a className="nav-link text-white " href="#">
+                  <Link
+                    to={"/register"}
+                    className="nav-link text-white "
+                    href="#"
+                  >
                     <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
                       <i className="material-icons opacity-10">receipt_long</i>
                       <span className="nav-link-text ms-3">Register Admin</span>
                     </div>
-                  </a>
+                  </Link>
                 </li>
               </div>
               <div

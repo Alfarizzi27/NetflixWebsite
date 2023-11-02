@@ -2,7 +2,7 @@ import App from "./App.jsx";
 import Home from "./pages/home";
 import Login from "./pages/Login";
 import Categories from "./pages/Categories.jsx";
-import AddFilm from "./pages/AddFilm.jsx";
+import RegisterAdmin from "./pages/RegisterAdmin.jsx";
 import "./index.css";
 
 import { createBrowserRouter, redirect } from "react-router-dom";
@@ -37,8 +37,8 @@ const router = createBrowserRouter([
         element: <Categories />,
       },
       {
-        path: "addfilm",
-        element: <AddFilm />,
+        path: "register",
+        element: <RegisterAdmin />,
       },
     ],
     loader: authenticated,

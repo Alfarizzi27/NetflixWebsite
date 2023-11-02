@@ -39,3 +39,17 @@ export const fetchGenresStart = (url) => {
         }
     }
 }
+
+export const showModalSuccess = payload => {
+    return { type: 'SHOW_MODAL', payload }
+}
+
+export const showModalstart = () => {
+    return async dispatch => {
+        try {
+            dispatch(showModalSuccess(true))
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
