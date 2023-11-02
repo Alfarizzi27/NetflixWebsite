@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import useFetch from "../hooks/useFetch";
 import Table from "../components/Table";
 import { fetchGenresStart } from "../assets/store/actions";
+import ModalGenre from "../components/ModalGenre";
 
 export default function Categories() {
-  // const { datas: genres, errors } = useFetch("genres");
-
   const genres = useSelector((state) => state.genres.data);
   const dispatch = useDispatch();
 
@@ -16,8 +14,17 @@ export default function Categories() {
 
   return (
     <>
-      <h4>Genres</h4>
-      <button className="btn btn-primary">Add Product</button>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginTop: "30px",
+          marginBottom: "10px",
+        }}
+      >
+        <h4>Genres</h4>
+        <ModalGenre title={"Add Genre"} />
+      </div>
       <table className="table">
         <thead>
           <tr>

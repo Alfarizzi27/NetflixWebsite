@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 
-export default function ModalAdd() {
+export default function ModalAdd(title) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -12,7 +12,7 @@ export default function ModalAdd() {
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
-        Add Product
+        {title.title}
       </Button>
 
       <Modal show={show} onHide={handleClose}>

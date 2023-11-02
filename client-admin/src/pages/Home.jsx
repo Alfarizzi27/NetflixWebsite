@@ -3,11 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import Table from "../components/Table";
 // import useFetch from "../hooks/useFetch";
 import ModalAdd from "../components/ModalAdd";
-import Button from "react-bootstrap/Button";
-import { fetchMoviesStart } from "../assets/store/actions";
+import { fetchMoviesStart, showModalSuccess } from "../assets/store/actions";
 
 function Home() {
-  // const { datas: movies, errors } = useFetch("movies");
+  // const show = useSelector((state) => state.show.data);
   const movies = useSelector((state) => state.movies.data);
   const dispatch = useDispatch();
 
@@ -30,8 +29,8 @@ function Home() {
         }}
       >
         <h4>Movies List</h4>
-        <ModalAdd />
-        {/* <Button variant="primary" onClick={showModal}>
+        <ModalAdd title={"Add Movies"} />
+        {/* <Button variant="primary" onClick={handleShow}>
           Add Product
         </Button> */}
       </div>
