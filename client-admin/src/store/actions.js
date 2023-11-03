@@ -80,15 +80,18 @@ export const loginStart = (payload, navigate) => {
             response = await response.json();
             localStorage.access_token = response.access_token
             navigate('/')
-            toast.success("Success Notification !", {
-                position: toast.POSITION.TOP_RIGHT
-            });
+            Swal.fire(
+                'Success!',
+                'Success Login',
+                'success'
+            )
             // dispatch(fetchMoviesSuccess(response))
         } catch (error) {
-            console.log(error, "<<<<");
-            toast.error("Success Notification !", {
-                position: toast.POSITION.TOP_CENTER
-            });
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: error.name,
+            })
 
         }
     }
