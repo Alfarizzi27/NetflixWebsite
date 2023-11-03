@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Table from "../components/Table";
 // import useFetch from "../hooks/useFetch";
 import ModalAdd from "../components/ModalAdd";
-import { fetchMoviesStart, showModalSuccess } from "../assets/store/actions";
+import { fetchMoviesStart, showModalSuccess } from "../store/actions";
 
 function Home() {
   // const show = useSelector((state) => state.show.data);

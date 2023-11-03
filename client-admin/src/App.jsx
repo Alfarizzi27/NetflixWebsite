@@ -1,5 +1,8 @@
 import { Outlet } from "react-router";
 import Sidebar from "./components/sidebar";
+import React from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -14,6 +17,7 @@ function App() {
             style={{ marginTop: "10px", marginLeft: "-50px" }}
           >
             <Outlet />
+            <ToastContainer />
           </div>
         </div>
       </div>
