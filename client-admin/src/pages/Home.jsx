@@ -11,7 +11,7 @@ function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchMoviesStart("movies"));
+    dispatch(fetchMoviesStart());
   }, []);
 
   // const showModal = () => {
@@ -56,7 +56,7 @@ function Home() {
               key={movie.id}
               data={movie}
               columns={["title", "slug", "rating", "authorId", "imgUrl"]}
-              actions={["edit", "delete"]}
+              actions={["edit", "deleteMovies"]}
               index={index}
             />
 

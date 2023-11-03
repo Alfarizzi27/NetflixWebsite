@@ -1,14 +1,17 @@
-import { toast } from "react-toastify";
-
 export const fetchMoviesSuccess = payload => {
     return { type: 'FETCH_MOVIES_SUCCESS', payload }
 }
 
-export const fetchMoviesStart = (url) => {
+export const fetchMoviesStart = () => {
     return async dispatch => {
         try {
-            let response = await fetch("http://localhost:3000/" + url);
-
+            let response = await fetch("http://localhost:3000/user/movies", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "access_token": localStorage.access_token
+                },
+            });
             if (!response.ok) {
                 throw { name: "gagal fetch" };
             }
@@ -28,8 +31,13 @@ export const fetchGenresSuccess = payload => {
 export const fetchGenresStart = (url) => {
     return async dispatch => {
         try {
-            let response = await fetch("http://localhost:3000/" + url);
-
+            let response = await fetch("http://localhost:3000/user/genres", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "access_token": localStorage.access_token
+                },
+            });
             if (!response.ok) {
                 throw { name: "gagal fetch" };
             }
@@ -96,3 +104,116 @@ export const loginStart = (payload, navigate) => {
         }
     }
 }
+
+export const fetchDetailSuccess = payload => {
+    return { type: 'FETCH_DETAIL_SUCCESS', payload }
+}
+
+export const fetchDetailStart = (id) => {
+    return async dispatch => {
+        try {
+            let response = await fetch("http://localhost:3000/user/movies/" + id, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "access_token": localStorage.access_token
+                },
+            })
+
+            if (!response.ok) {
+                throw { name: "gagal fetch" };
+            }
+            response = await response.json();
+            dispatch(fetchDetailSuccess(response))
+
+
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
+export const deleteGenresSuccess = payload => {
+    return { type: 'DELETE_GENRES_SUCCESS', payload }
+}
+
+export const deleteGenresStart = (id) => {
+    return async (dispatch) => {
+        try {
+            const result = await Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            });
+            if (result.isConfirmed) {
+                let response = await fetch("http://localhost:3000/user/genres/" + id, {
+                    method: 'DELETE', headers: {
+                        "Content-Type": "application/json",
+                        "access_token": localStorage.access_token
+                    },
+                })
+
+                if (!response.ok) {
+                    throw { name: "gagal delete" };
+                }
+
+                dispatch(fetchGenresStart())
+
+                await Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                );
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+export const deleteSuccess = payload => {
+    return { type: 'DELETE_SUCCESS', payload }
+}
+
+export const deleteStart = (id) => {
+    return async (dispatch) => {
+        try {
+            const result = await Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            });
+            if (result.isConfirmed) {
+                let response = await fetch("http://localhost:3000/user/movies/" + id, {
+                    method: 'DELETE', headers: {
+                        "Content-Type": "application/json",
+                        "access_token": localStorage.access_token
+                    },
+                })
+
+                if (!response.ok) {
+                    throw { name: "gagal delete" };
+                }
+
+                dispatch(fetchMoviesStart())
+
+                await Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                );
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+

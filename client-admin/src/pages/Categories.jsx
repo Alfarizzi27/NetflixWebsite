@@ -42,7 +42,7 @@ export default function Categories() {
               index={index}
               key={genre.id}
               columns={["name", "createdAt", "updatedAt"]}
-              actions={[null, "delete"]}
+              actions={[null, "deleteGenres"]}
             />
           ))}
         </tbody>

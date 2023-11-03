@@ -10,10 +10,7 @@ function Sidebar() {
   const logout = () => {
     localStorage.clear();
     navigate("/login");
-    toast.error("Success Notification !", {
-      position: toast.POSITION.TOP_RIGHT,
-    });
-    Swal.fire("SweetAlert2 is working!");
+    Swal.fire("Success!", "Success Login", "success");
   };
 
   return (
