@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Table from "../components/Table";
 // import useFetch from "../hooks/useFetch";
 import ModalAdd from "../components/ModalAdd";
-import { fetchMoviesStart, showModalSuccess } from "../assets/store/actions";
+import { fetchMoviesStart, showModalSuccess } from "../store/actions";
 
 function Home() {
   // const show = useSelector((state) => state.show.data);
@@ -11,7 +11,7 @@ function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchMoviesStart("movies"));
+    dispatch(fetchMoviesStart());
   }, []);
 
   // const showModal = () => {
@@ -56,7 +56,7 @@ function Home() {
               key={movie.id}
               data={movie}
               columns={["title", "slug", "rating", "authorId", "imgUrl"]}
-              actions={["edit", "delete"]}
+              actions={["edit", "deleteMovies"]}
               index={index}
             />
 

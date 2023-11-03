@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Table from "../components/Table";
-import { fetchGenresStart } from "../assets/store/actions";
+import { fetchGenresStart } from "../store/actions";
 import ModalGenre from "../components/ModalGenre";
 
 export default function Categories() {
@@ -42,7 +42,7 @@ export default function Categories() {
               index={index}
               key={genre.id}
               columns={["name", "createdAt", "updatedAt"]}
-              actions={[null, "delete"]}
+              actions={[null, "deleteGenres"]}
             />
           ))}
         </tbody>

@@ -1,9 +1,16 @@
 import { Link, useNavigate } from "react-router-dom";
 import logo2 from "../assets/img/logo2.jpeg";
+import React from "react";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 function Sidebar() {
+  const navigate = useNavigate();
+
   const logout = () => {
     localStorage.clear();
+    navigate("/login");
+    Swal.fire("Success!", "Success Login", "success");
   };
 
   return (

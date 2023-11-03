@@ -1,32 +1,46 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchDetailStart,
+  deleteStart,
+  deleteGenresStart,
+} from "../store/actions";
+import { useNavigate } from "react-router-dom";
 
 export default function Table({ data, columns, index, actions }) {
   const [editAction, deleteAction] = actions;
 
-  const [edit, setEdit] = useState([]);
-  const [show, setShow] = useState(false);
+  const edit = useSelector((state) => state.movies.editData);
+  const dispatch = useDispatch();
 
+  const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  async function editDatas(id) {
-    try {
-      let response = await fetch("http://localhost:3000/movies/" + id);
+  // async function editDatas(id) {
+  //   try {
+  //     await dispatch(fetchDetailStart(id));
+  //     handleShow();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
-      if (!response.ok) {
-        throw { name: "gagal fetch" };
-      }
+  const editDatas = async (id) => {
+    await dispatch(fetchDetailStart(id));
+    handleShow();
+  };
 
-      response = await response.json();
-      setEdit(response);
-      handleShow();
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  const deleteDatas = (id) => {
+    dispatch(deleteStart(id));
+  };
+
+  const deleteGenres = (id) => {
+    dispatch(deleteGenresStart(id));
+  };
 
   return (
     <>
@@ -55,19 +69,30 @@ export default function Table({ data, columns, index, actions }) {
         >
           {editAction && (
             <i
-              onClick={() => {
-                editDatas(data.id);
-              }}
+              onClick={() => editDatas(data.id)}
               className="fa-regular fa-pen-to-square fa-lg"
               style={{ color: "#000000" }}
             ></i>
           )}
 
-          {deleteAction && (
+          {deleteAction === "deleteMovies" ? (
             <i
+              onClick={() => deleteDatas(data.id)}
               className="fa-solid fa-trash fa-lg"
               style={{ color: "#000000" }}
             ></i>
+          ) : (
+            ""
+          )}
+
+          {deleteAction === "deleteGenres" ? (
+            <i
+              onClick={() => deleteGenres(data.id)}
+              className="fa-solid fa-trash fa-lg"
+              style={{ color: "#000000" }}
+            ></i>
+          ) : (
+            ""
           )}
         </td>
       </tr>
