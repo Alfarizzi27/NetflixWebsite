@@ -10,7 +10,7 @@ router.use(authentication)
 
 router.get('/movies', UserController.fetchMovie)
 router.get('/movies/:id', UserController.detailMovie)
-router.post('/movies', UserController.createProduct)
+router.post('/movies', UserController.createMovie)
 
 router.get('/genres', UserController.fetchGenre)
 router.post('/genres', UserController.createGenre)

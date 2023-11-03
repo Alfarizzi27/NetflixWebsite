@@ -1,4 +1,4 @@
-const { User, Movie, Genre, Cast } = require('../models')
+const { User, Movie, Genre, Casts, sequelize } = require('../models')
 const { createToken, verifyToken } = require('../helpers/jwt')
 const bcrypt = require('bcryptjs')
 
@@ -89,17 +89,30 @@ class UserController {
         }
     }
 
-    static async createProduct(req, res, next) {
+    static async createMovie(req, res, next) {
         try {
             const { title, synopsis, trailerUrl, rating, genreId, authorId, imgUrl, cast } = req.body
-            console.log(title, synopsis, trailerUrl, rating, genreId, authorId, imgUrl);
-            // const a = JSON.parse(cast)
-            console.log(typeof cast, "<<< INI CAST");
-            // const movies = await Movie.create({ title, synopsis, trailerUrl, rating, genreId, authorId, imgUrl })
+            const t = await sequelize.transaction();
 
-            // res.status(201).json(movies)
+            const movies = await Movie.create({ title, synopsis, trailerUrl, rating, genreId, authorId, imgUrl }, { transaction: t })
+
+            let datasCast = cast.map(el => {
+                return JSON.parse(el)
+            })
+
+            datasCast = datasCast.map(el => {
+                el.movieId = movies.id
+                el.createdAt = el.updatedAt = new Date()
+                return el
+            })
+
+            const createCast = await Casts.bulkCreate(datasCast, { transaction: t })
+
+            await t.commit()
+            res.status(201).json({ movies, createCast })
         } catch (error) {
             console.log(error);
+            await t.rollback()
             next(error)
         }
     }
