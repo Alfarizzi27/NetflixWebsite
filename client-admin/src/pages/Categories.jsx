@@ -9,7 +9,7 @@ export default function Categories() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchGenresStart("genres"));
+    dispatch(fetchGenresStart());
   }, []);
 
   return (

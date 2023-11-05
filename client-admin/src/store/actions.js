@@ -1,3 +1,7 @@
+export const skeleton = () => {
+    return { type: 'SKELETON_SUCCESS' }
+}
+
 export const fetchMoviesSuccess = payload => {
     return { type: 'FETCH_MOVIES_SUCCESS', payload }
 }
@@ -20,6 +24,8 @@ export const fetchMoviesStart = () => {
             dispatch(fetchMoviesSuccess(response))
         } catch (error) {
             console.log(error);
+        } finally {
+            dispatch(skeleton())
         }
     }
 }
@@ -28,7 +34,7 @@ export const fetchGenresSuccess = payload => {
     return { type: 'FETCH_GENRES_SUCCESS', payload }
 }
 
-export const fetchGenresStart = (url) => {
+export const fetchGenresStart = () => {
     return async dispatch => {
         try {
             let response = await fetch("http://localhost:3000/user/genres", {
@@ -175,6 +181,7 @@ export const deleteGenresStart = (id) => {
         }
     }
 }
+
 export const deleteSuccess = payload => {
     return { type: 'DELETE_SUCCESS', payload }
 }
@@ -217,3 +224,145 @@ export const deleteStart = (id) => {
     }
 }
 
+export const addAdminStart = (payload) => {
+    return async (dispatch) => {
+        try {
+            let response = await fetch("http://localhost:3000/user/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(payload)
+            })
+
+            if (!response.ok) {
+                response = await response.json()
+                throw { name: response.message };
+            }
+
+            Swal.fire(
+                'Success!',
+                'Success Add Admin',
+                'success'
+            )
+
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: error.name,
+            })
+        }
+    }
+}
+
+export const addGenresStart = (payload) => {
+    return async (dispatch) => {
+        try {
+            let response = await fetch("http://localhost:3000/user/genres", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "access_token": localStorage.access_token
+                },
+                body: JSON.stringify(payload)
+            })
+
+            console.log(response);
+
+            if (!response.ok) {
+                response = await response.json()
+                throw { name: response.message };
+            }
+
+            dispatch(fetchGenresStart())
+
+            Swal.fire(
+                'Success!',
+                'Success Add Genres',
+                'success'
+            )
+        } catch (error) {
+            console.log(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: error.name,
+            })
+        }
+    }
+}
+
+export const addMovieStart = (payload) => {
+    return async (dispatch) => {
+        try {
+
+            let response = await fetch("http://localhost:3000/user/movies", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "access_token": localStorage.access_token
+                },
+                body: JSON.stringify(payload)
+            })
+
+            if (!response.ok) {
+                response = await response.json()
+                throw { name: response.message };
+            }
+
+            dispatch(fetchMoviesStart())
+
+            Swal.fire(
+                'Success!',
+                'Success Add Movies',
+                'success'
+            )
+            // console.log(response);
+
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: error.name,
+            })
+        }
+    }
+}
+
+export const editDetailStart = (id, payload) => {
+    return async (dispatch) => {
+        try {
+            console.log(payload);
+            let response = await fetch("http://localhost:3000/user/movies" + id, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "access_token": localStorage.access_token
+                },
+                body: JSON.stringify(payload)
+            })
+
+            if (!response.ok) {
+                response = await response.json()
+                throw { name: response.message };
+            }
+
+            dispatch(fetchMoviesStart())
+
+            Swal.fire(
+                'Success!',
+                'Success Add Movies',
+                'success'
+            )
+
+        } catch (error) {
+            console.log(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: error.name,
+            })
+        }
+    }
+}

@@ -1,8 +1,42 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import FloatingLabel from "react-bootstrap/esm/FloatingLabel";
-
+import { useDispatch } from "react-redux";
+import { addAdminStart } from "../store/actions";
+import { useState } from "react";
 export default function RegisterAdmin() {
+  const dispatch = useDispatch();
+
+  const [admin, setAdmin] = useState({
+    username: "",
+    email: "",
+    password: "",
+    phoneNumber: "",
+    address: "",
+  });
+
+  const changeHandler = (e) => {
+    const { name, value } = e.target;
+
+    setAdmin({
+      ...admin,
+      [name]: value,
+    });
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    dispatch(
+      addAdminStart({
+        username: admin.username,
+        email: admin.email,
+        password: admin.password,
+        phoneNumber: admin.phoneNumber,
+        address: admin.address,
+      })
+    );
+  };
+
   return (
     <>
       <div
@@ -20,8 +54,8 @@ export default function RegisterAdmin() {
       </div>
 
       <div style={{ display: "flex" }}>
-        <Form style={{ width: "100%" }}>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form onSubmit={submitHandler} style={{ width: "100%" }}>
+          <Form.Group className="mb-3" controlId="formBasicUsername">
             <Form.Label>Username</Form.Label>
             <Form.Control
               style={{
@@ -31,6 +65,8 @@ export default function RegisterAdmin() {
               }}
               type="text"
               placeholder="Enter username"
+              name="username"
+              onChange={changeHandler}
             />
           </Form.Group>
 
@@ -44,6 +80,8 @@ export default function RegisterAdmin() {
               }}
               type="email"
               placeholder="Enter email"
+              name="email"
+              onChange={changeHandler}
             />
           </Form.Group>
 
@@ -58,10 +96,12 @@ export default function RegisterAdmin() {
               type="password"
               placeholder="Password"
               autoComplete="on"
+              name="password"
+              onChange={changeHandler}
             />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Group className="mb-3" controlId="formBasicPhone">
             <Form.Label>Phone Number</Form.Label>
             <Form.Control
               style={{
@@ -71,6 +111,8 @@ export default function RegisterAdmin() {
               }}
               type="text"
               placeholder="Enter phone number"
+              name="phoneNumber"
+              onChange={changeHandler}
             />
           </Form.Group>
 
@@ -88,6 +130,8 @@ export default function RegisterAdmin() {
               }}
               as="textarea"
               placeholder="Leave a comment here"
+              name="address"
+              onChange={changeHandler}
             />
           </FloatingLabel>
 
