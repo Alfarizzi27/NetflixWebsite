@@ -11,7 +11,7 @@ export default function CardMovies({ data }) {
 
   const detailMovie = (id) => {
     dispatch(fetchDetailStart(id));
-    navigate("/detail");
+    navigate("/detail/" + id);
   };
   return (
     <>

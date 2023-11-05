@@ -27,7 +27,7 @@ export const fetchDetailSuccess = payload => {
     return { type: 'FETCH_DETAIL_SUCCESS', payload }
 }
 
-export const fetchDetailStart = (id) => {
+export const fetchDetailStart = () => {
     return async dispatch => {
         try {
             let response = await fetch("http://localhost:3000/customer/movies/" + id, {
