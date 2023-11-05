@@ -1,12 +1,12 @@
 const jwt = require('jsonwebtoken');
 
 function createToken(payload) {
-    const token = jwt.sign(payload, 'rahasiabangetini');
+    const token = jwt.sign(payload, process.env.SECRET);
     return token
 }
 
 function verifyToken(payload) {
-    const verify = jwt.verify(payload, 'rahasiabangetini')
+    const verify = jwt.verify(payload, process.env.SECRET)
     return verify
 }
 

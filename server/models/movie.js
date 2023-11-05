@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Movie.hasMany(models.Casts, { foreignKey: 'movieId' })
     }
   }
   Movie.init({
@@ -64,9 +64,14 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Movie',
   });
 
+  // Movie.beforeUpdate((movie) => {
+  //   movie.slug = movie.title.split(" ").join("-")
+  // });
+
   Movie.beforeCreate((movie) => {
     movie.slug = movie.title.split(" ").join("-")
   });
+
 
   return Movie;
 };

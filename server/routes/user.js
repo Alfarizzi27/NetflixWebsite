@@ -11,9 +11,12 @@ router.use(authentication)
 router.get('/movies', UserController.fetchMovie)
 router.get('/movies/:id', UserController.detailMovie)
 router.post('/movies', UserController.createMovie)
+router.put('/movies/:id', UserController.updateMovie)
+router.delete('/movies/:id', UserController.deleteMovie)
 
 router.get('/genres', UserController.fetchGenre)
 router.post('/genres', UserController.createGenre)
+router.delete('/genres/:id', UserController.deleteGenres)
 
 
 module.exports = router

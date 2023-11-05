@@ -14,7 +14,21 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Genre.init({
-    name: DataTypes.STRING
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          arg: true,
+          msg: "Name Cannot null"
+        },
+        notEmpty: {
+          arg: true,
+          msg: "Name Cannot null"
+        }
+      }
+
+    }
   }, {
     sequelize,
     modelName: 'Genre',
